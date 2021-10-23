@@ -1,3 +1,7 @@
+# ---> build 
+build*/
+# ---> editor
+.vscode
 # ---> C++
 # Prerequisites
 *.d
