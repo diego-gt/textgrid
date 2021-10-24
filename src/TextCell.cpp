@@ -47,6 +47,8 @@ void TextCell::DrawFrame(CornerDraw cd) {
 }
 
 void TextCell::DrawContent() {
+  // If we have a neighbor to the left, we'll use its right vframe
+  // as our left vframe
   if (m_has_nb_left) {
     std::cout << m_content << m_vframe;
   } else {
@@ -71,10 +73,25 @@ void TextCell::SetNeighbors(NeighborPosition nbp, bool value) {
   }
 }
 
+bool TextCell::HasNeighbor(NeighborPosition nbp) {
+  switch (nbp) {
+  case NeighborPosition::Left:
+    return m_has_nb_left;
+  case NeighborPosition::Right:
+    return m_has_nb_right;
+  case NeighborPosition::Up:
+    return m_has_nb_up;
+  case NeighborPosition::Down:
+    return m_has_nb_down;
+  }
+}
+
 void TextCell::Debug() {
   std::cout << "Current cell has:\n";
-  std::cout << "\tSize: (" << m_width << ", " << m_height << ")\n";
-  std::cout << "\tNeighbors\n";
-  std::cout << "\t\tLeft: " << m_has_nb_left << "\n";
-  std::cout << "\t\tRight: " << m_has_nb_right << "\n";
+  // std::cout << "\tSize: (" << m_width << ", " << m_height << ")\n";
+  std::cout << "Content: " << m_content << "\n";
+  std::cout << "Neighbors\n";
+  std::cout << "\tLeft: " << m_has_nb_left << "\tRight: " << m_has_nb_right
+            << "\n";
+  std::cout << "\tUp: " << m_has_nb_up << "\tDown: " << m_has_nb_down << "\n";
 }

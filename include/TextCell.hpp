@@ -13,16 +13,19 @@ public:
   TextCell() = default;
   TextCell(char content);
 
-  // Tell the cell if it has any neighbors, 
+  // Tell the cell if it has any neighbors,
   // because it's drawing is affected by them
   void SetNeighbors(NeighborPosition nbp, bool value);
+
+  // Query the cell to see if it has a neighbor at position
+  bool HasNeighbor(NeighborPosition nbp);
 
   // Draw (print) the cell to the console
   void Draw();
 
   // Draw the upper/lower frame with corners specified by CornerDraw
   void DrawFrame(CornerDraw cd);
-  
+
   // Draw the content with side frames
   void DrawContent();
 
