@@ -5,15 +5,23 @@
 #include <string>
 #include <vector>
 
-enum CornerDraw { C_None, C_UpLeft, C_UpRight, C_DownLeft, C_DownRight };
-enum NeighborPosition { N_Left, N_Right, N_Up, N_Down };
+enum class CornerDraw { Left, Right, None, Both };
+enum class NeighborPosition { Left, Right, Up, Down };
 
 class USC_DLL_EXPORT TextCell {
 public:
   TextCell() = default;
   TextCell(char content);
 
+  // Tell the cell if it has any neighbors, because it's drawing is affected by
+  // them
   void SetNeighbors(NeighborPosition nbp, bool value);
+
+  // Draw (print) the cell to the console
+  void Draw();
+
+  // Draw the upper/lower frame with corners specified by CornerDraw
+  void DrawFrame(CornerDraw cd);
 
   // debug
   void Debug();
