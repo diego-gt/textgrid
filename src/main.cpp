@@ -1,11 +1,12 @@
-#include "TextGrid.hpp"
+#include "TextCell.hpp"
 
 #include <iostream>
 
 int main() {
-  TextGrid grid(1, 2);
+  TextCell cell('x');
 
-  grid.Draw(true);
+  cell.Debug();
+  cell.Draw();
 
   return 0;
 }
