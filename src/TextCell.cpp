@@ -6,27 +6,51 @@ TextCell::TextCell(char content) { m_content = content; }
 
 void TextCell::Draw() {
   DrawFrame(CornerDraw::Both);
-  std::cout << m_vframe << m_content << m_vframe << "\n";
+  DrawContent();
   DrawFrame(CornerDraw::Both);
 }
 
 void TextCell::DrawFrame(CornerDraw cd) {
   switch (cd) {
   case CornerDraw::Left:
-    std::cout << m_corner << m_hframe << m_hframe << "\n";
+    if (m_has_nb_left) {
+      std::cout << m_hframe << m_hframe;
+    } else {
+      std::cout << m_corner << m_hframe << m_hframe;
+    }
     break;
 
   case CornerDraw::Right:
-    std::cout << m_hframe << m_hframe << m_corner << "\n";
+    if (m_has_nb_left) {
+      std::cout << m_hframe << m_corner;
+    } else {
+      std::cout << m_hframe << m_hframe << m_corner;
+    }
     break;
 
   case CornerDraw::None:
-    std::cout << m_hframe << m_hframe << m_hframe << "\n";
+    if (m_has_nb_left) {
+      std::cout << m_hframe << m_hframe;
+    } else {
+      std::cout << m_hframe << m_hframe << m_hframe;
+    }
     break;
 
   case CornerDraw::Both:
-    std::cout << m_corner << m_hframe << m_corner << "\n";
+    if (m_has_nb_left) {
+      std::cout << m_hframe << m_corner;
+    } else {
+      std::cout << m_corner << m_hframe << m_corner;
+    }
     break;
+  }
+}
+
+void TextCell::DrawContent() {
+  if (m_has_nb_left) {
+    std::cout << m_content << m_vframe;
+  } else {
+    std::cout << m_vframe << m_content << m_vframe;
   }
 }
 
