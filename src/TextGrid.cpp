@@ -8,6 +8,4 @@ TextGrid::TextGrid(double height, double width) {
   m_width  = width;
 }
 
-void TextGrid::Draw(bool print_corners) {
-  std::cout << "implement function\n";
-}
+void TextGrid::Draw(bool print_corners) { std::cout << "implement function\n"; }
