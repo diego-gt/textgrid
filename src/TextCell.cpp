@@ -2,16 +2,8 @@
 
 #include <iostream>
 
-TextCell::TextCell(int size) {
-  if (size % 2 == 0) {
-    std::cout << "The cell size should be odd for alignment, adding 1...\n";
-    ++size;
-  }
-
-  m_height      = size;
-  m_width       = size;
-  m_padding     = (size - 1) / 2;
-  m_content_pos = m_padding;
+TextCell::TextCell(char content) {
+  m_content = content;
 }
 
 void TextCell::SetNeighbors(NeighborPosition nbp, bool value) {
@@ -33,17 +25,8 @@ void TextCell::SetNeighbors(NeighborPosition nbp, bool value) {
 
 void TextCell::Debug() {
   std::cout << "Current cell has:\n";
-  std::cout << "\t"
-            << "Size: (" << m_width << ", " << m_height << ")\n";
-  std::cout << "\t"
-            << "Neighbors"
-            << "\n";
-  std::cout << "\t\t"
-            << "Left: " << m_has_nb_left << "\n";
-  std::cout << "\t\t"
-            << "Right: " << m_has_nb_right << "\n";
-  // std::cout << "\t\t"
-  //           << "Up: " << m_has_nb_up << "\n";
-  // std::cout << "\t\t"
-  //           << "Down: " << m_has_nb_down << "\n";
+  std::cout << "\tSize: (" << m_width << ", " << m_height << ")\n";
+  std::cout << "\tNeighbors\n";
+  std::cout << "\t\tLeft: " << m_has_nb_left << "\n";
+  std::cout << "\t\tRight: " << m_has_nb_right << "\n";
 }

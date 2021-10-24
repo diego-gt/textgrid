@@ -11,7 +11,7 @@ enum NeighborPosition { N_Left, N_Right, N_Up, N_Down };
 class USC_DLL_EXPORT TextCell {
 public:
   TextCell() = default;
-  TextCell(int size);
+  TextCell(char content);
 
   void SetNeighbors(NeighborPosition nbp, bool value);
 
@@ -19,14 +19,12 @@ public:
   void Debug();
 
 private:
+  // dimensions
+  int m_width{3}, m_height{3};
+
   // Neighbours
   bool m_has_nb_left{false}, m_has_nb_right{false};
   bool m_has_nb_up{false}, m_has_nb_down{false};
-
-  // Dimensions & positions
-  int m_height{0}, m_width{0};
-  int m_padding{0};
-  int m_content_pos{0};
 
   // Characters
   char m_content = ' ';
