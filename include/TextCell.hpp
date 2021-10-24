@@ -14,21 +14,11 @@ public:
   TextCell(int size);
 
   void SetNeighbors(NeighborPosition nbp, bool value);
-  void SetCornerChar(char corner);
-  void SetContentChar(char content);
-
-  int Height() { return m_height; }
-
-  void Init();
-  void PrintLineAt(int index);
-  std::string LineAt(int index);
 
   // debug
   void Debug();
 
 private:
-  std::vector<std::string> m_lines;
-
   // Neighbours
   bool m_has_nb_left{false}, m_has_nb_right{false};
   bool m_has_nb_up{false}, m_has_nb_down{false};
@@ -43,9 +33,4 @@ private:
   char m_corner  = '+';
   char m_vframe  = '|';
   char m_hframe  = '-';
-
-  // Print methods
-  void PrintStraightLine(int width, CornerDraw cd);
-  void PrintPaddedLine();
-  void PrintContent();
 };

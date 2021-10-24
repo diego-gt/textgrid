@@ -3,7 +3,6 @@
 #include "TextCell.hpp"
 #include "Visibility.hpp"
 
-#include <stdbool.h>
 #include <vector>
 
 class USC_DLL_EXPORT TextGrid {
