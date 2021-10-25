@@ -52,6 +52,7 @@ void TextGrid::Draw() {
         if (j == 0) {
           if (j == m_width - 1) {
             m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Both);
+            std::cout << "\n";
           } else {
             m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Left);
           }
@@ -61,10 +62,6 @@ void TextGrid::Draw() {
         } else {
           m_cells[j + (i * m_width)].DrawFrame(CornerDraw::None);
         }
-      }
-
-      if (j == m_width - 1) {
-        std::cout << "\n";
       }
     }
 
