@@ -18,27 +18,28 @@ void TextGrid::InitializeCells(char cell_content) {
   for (int i = 0; i < m_height; i++) {
     /// TODO: add support for multiple rows
     for (int j = 0; j < m_width; j++) {
+      TextCell *cell = &m_cells[j + (i * m_width)];
       // every cell besides the first has a left neighbor
       if (j > 0) {
-        m_cells[j + (i * m_width)].SetNeighbors(NeighborPosition::Left, true);
+        cell->SetNeighbors(NeighborPosition::Left, true);
       }
 
-      m_cells[j + (i * m_width)].SetNeighbors(NeighborPosition::Right, true);
+      cell->SetNeighbors(NeighborPosition::Right, true);
 
       // every cell besides the last has a right neighbor
       if (j == m_width - 1) {
-        m_cells[j + (i * m_width)].SetNeighbors(NeighborPosition::Right, false);
+        cell->SetNeighbors(NeighborPosition::Right, false);
       }
 
       // if there's more than 1 row, we have neighbors above
       if (i > 0) {
-        m_cells[j + (i * m_width)].SetNeighbors(NeighborPosition::Up, true);
+        cell->SetNeighbors(NeighborPosition::Up, true);
       }
 
       // if there's more than 1 row, every row besides the last one will have
       // neighbors below
       if (i < m_height - 1) {
-        m_cells[j + (i * m_width)].SetNeighbors(NeighborPosition::Down, true);
+        cell->SetNeighbors(NeighborPosition::Down, true);
       }
     }
   }
@@ -47,48 +48,57 @@ void TextGrid::InitializeCells(char cell_content) {
 void TextGrid::Draw() {
   for (int i = 0; i < m_height; i++) {
     for (int j = 0; j < m_width; j++) {
+      // Get cell handle
+      TextCell *cell = &m_cells[j + (i * m_width)];
+
       // draw frames
-      if (!m_cells[j + (i * m_width)].HasNeighbor(NeighborPosition::Up)) {
+      if (!cell->HasNeighbor(NeighborPosition::Up)) {
         if (j == 0) {
           if (j == m_width - 1) {
-            m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Both);
+            cell->DrawFrame(CornerDraw::Both);
             std::cout << "\n";
           } else {
-            m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Left);
+            cell->DrawFrame(CornerDraw::Left);
           }
         } else if (j == m_width - 1) {
-          m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Right);
+          cell->DrawFrame(CornerDraw::Right);
           std::cout << "\n";
         } else {
-          m_cells[j + (i * m_width)].DrawFrame(CornerDraw::None);
+          cell->DrawFrame(CornerDraw::None);
         }
       }
     }
 
     for (int j = 0; j < m_width; j++) {
-      m_cells[j + (i * m_width)].DrawContent();
+      // Get cell handle
+      TextCell *cell = &m_cells[j + (i * m_width)];
+
+      cell->DrawContent();
       if (j == m_width - 1) {
         std::cout << "\n";
       }
     }
 
     for (int j = 0; j < m_width; j++) {
-      if (!m_cells[j + (i * m_width)].HasNeighbor(NeighborPosition::Down)) {
+      // Get cell handle
+      TextCell *cell = &m_cells[j + (i * m_width)];
+
+      if (!cell->HasNeighbor(NeighborPosition::Down)) {
         if (j == 0) {
           if (j == m_width - 1) {
-            m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Both);
+            cell->DrawFrame(CornerDraw::Both);
           } else {
-            m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Left);
+            cell->DrawFrame(CornerDraw::Left);
           }
         } else if (j == m_width - 1) {
-          m_cells[j + (i * m_width)].DrawFrame(CornerDraw::Right);
+          cell->DrawFrame(CornerDraw::Right);
           std::cout << "\n";
         } else {
-          m_cells[j + (i * m_width)].DrawFrame(CornerDraw::None);
+          cell->DrawFrame(CornerDraw::None);
         }
       } else {
         // if there's a neighbor below, don't print any corners
-        m_cells[j + (i * m_width)].DrawFrame(CornerDraw::None);
+        cell->DrawFrame(CornerDraw::None);
         if (j == m_width - 1) {
           std::cout << "\n";
         }
