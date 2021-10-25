@@ -5,7 +5,7 @@
 void newline();
 
 int main() {
-  TextGrid grid(1, 5);
+  TextGrid grid(1, 1);
 
   grid.InitializeCells('x');
   grid.Debug();
