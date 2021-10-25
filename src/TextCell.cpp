@@ -90,7 +90,7 @@ bool TextCell::HasNeighbor(NeighborPosition nbp) {
 
 void TextCell::Debug() {
   std::cout << "Current cell has:\n";
-  // std::cout << "\tSize: (" << m_width << ", " << m_height << ")\n";
+  std::cout << "\tSize: (" << m_width << ", " << m_height << ")\n";
   std::cout << "Content: " << m_content << "\n";
   std::cout << "Neighbors\n";
   std::cout << "\tLeft: " << m_has_nb_left << "\tRight: " << m_has_nb_right
