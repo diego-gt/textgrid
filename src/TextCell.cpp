@@ -84,6 +84,8 @@ bool TextCell::HasNeighbor(NeighborPosition nbp) {
   case NeighborPosition::Down:
     return m_has_nb_down;
   }
+
+  return false;
 }
 
 void TextCell::Debug() {
