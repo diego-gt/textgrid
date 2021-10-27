@@ -16,6 +16,9 @@ public:
   // Print grid to console
   void Draw();
 
+  // Resize cells
+  void ResizeCells(unsigned int unit);
+
   void Debug();
 
 private:

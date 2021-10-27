@@ -107,6 +107,12 @@ void TextGrid::Draw() {
   }
 }
 
+void TextGrid::ResizeCells(unsigned int unit) {
+  for (auto &cell : m_cells) {
+    cell.Resize(unit);
+  }
+}
+
 void TextGrid::Debug() {
   for (int i = 0; i < m_height; i++) {
     std::cout << "Row " << i << " cells:\n";
