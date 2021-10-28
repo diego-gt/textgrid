@@ -4,7 +4,7 @@
 
 TextCell::TextCell(char content) { m_content = content; }
 
-void TextCell::Resize(unsigned int unit) {
+void TextCell::Resize(unsigned short unit) {
   m_unit = unit;
 
   m_height = m_unit * 2 + 1;
@@ -103,6 +103,8 @@ bool TextCell::HasNeighbor(NeighborPosition nbp) {
 
   return false;
 }
+
+void TextCell::SetContent(char new_content) { m_content = new_content; }
 
 void TextCell::Debug() {
   std::cout << "Current cell has:\n";
