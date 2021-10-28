@@ -3,22 +3,24 @@
 #include <iostream>
 #include <string>
 
-TextGrid::TextGrid(int height, int width) {
+TextGrid::TextGrid(unsigned short height, unsigned short width) {
   m_height = height;
   m_width  = width;
 }
 
 void TextGrid::InitializeCells(char cell_content) {
-  // Create cells
-  for (int i = 0; i < m_height * m_width; i++) {
-    m_cells.push_back(TextCell(cell_content));
+  // create the cells
+  for (int i = 0; i < m_height; i++) {
+    m_cells.push_back(std::vector<TextCell>());
+    for (int j = 0; j < m_width; j++) {
+      m_cells[i].push_back(TextCell(cell_content));
+    }
   }
 
   // Neighbor configuration
   for (int i = 0; i < m_height; i++) {
-    /// TODO: add support for multiple rows
     for (int j = 0; j < m_width; j++) {
-      TextCell *cell = &m_cells[j + (i * m_width)];
+      TextCell *cell = &m_cells[i][j];
       // every cell besides the first has a left neighbor
       if (j > 0) {
         cell->SetNeighbors(NeighborPosition::Left, true);
@@ -49,7 +51,7 @@ void TextGrid::Draw() {
   for (int i = 0; i < m_height; i++) {
     for (int j = 0; j < m_width; j++) {
       // Get cell handle
-      TextCell *cell = &m_cells[j + (i * m_width)];
+      TextCell *cell = &m_cells[i][j];
 
       // draw frames
       if (!cell->HasNeighbor(NeighborPosition::Up)) {
@@ -71,7 +73,7 @@ void TextGrid::Draw() {
 
     for (int j = 0; j < m_width; j++) {
       // Get cell handle
-      TextCell *cell = &m_cells[j + (i * m_width)];
+      TextCell *cell = &m_cells[i][j];
 
       cell->DrawContent();
       if (j == m_width - 1) {
@@ -81,7 +83,7 @@ void TextGrid::Draw() {
 
     for (int j = 0; j < m_width; j++) {
       // Get cell handle
-      TextCell *cell = &m_cells[j + (i * m_width)];
+      TextCell *cell = &m_cells[i][j];
 
       if (!cell->HasNeighbor(NeighborPosition::Down)) {
         if (j == 0) {
@@ -107,17 +109,25 @@ void TextGrid::Draw() {
   }
 }
 
-void TextGrid::ResizeCells(unsigned int unit) {
-  for (auto &cell : m_cells) {
-    cell.Resize(unit);
+void TextGrid::ResizeCells(unsigned short unit) {
+  for (auto &row : m_cells) {
+    for (auto &cell : row) {
+      cell.Resize(unit);
+    }
   }
 }
 
+void TextGrid::SetCell(unsigned short m, unsigned short n, char new_content) {
+  m_cells[m - 1][n - 1].SetContent(new_content);
+}
+
 void TextGrid::Debug() {
-  for (int i = 0; i < m_height; i++) {
-    std::cout << "Row " << i << " cells:\n";
-    for (int j = 0; j < m_width; j++) {
-      m_cells[j + (i * m_width)].Debug();
+  unsigned int idx = 0;
+  for (auto &row : m_cells) {
+    std::cout << "Row " << idx << " cells: \n";
+    for (auto &cell : row) {
+      cell.Debug();
     }
+    idx++;
   }
 }
