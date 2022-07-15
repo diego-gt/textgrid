@@ -2,9 +2,9 @@
 
 #include <iostream>
 
-TextCell::TextCell(char content) { m_content = content; }
+TextCell::TextCell(i8 content) { m_content = content; }
 
-void TextCell::Resize(unsigned short unit) {
+void TextCell::Resize(u16 unit) {
   m_unit = unit;
 
   m_height = m_unit * 2 + 1;
