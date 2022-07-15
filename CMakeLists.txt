@@ -9,6 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(textgrid
     include/Visibility.hpp
+    include/Types.hpp
     include/TextCell.hpp
     include/TextGrid.hpp
     src/TextCell.cpp
