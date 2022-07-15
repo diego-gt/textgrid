@@ -2,6 +2,7 @@
 build*/
 # ---> editor
 .vscode
+.cache
 # ---> C++
 # Prerequisites
 *.d
