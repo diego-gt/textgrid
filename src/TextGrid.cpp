@@ -1,3 +1,9 @@
+// Possible features to add:
+// - Given an array, lay the items as they fit on a grid.
+// If grid item count is greater than the array size, use a default placeholder.
+// - Add support for unicode characters for the cells border and/or content
+// - Add way to "move" an item to another coordinate
+
 #include "TextGrid.hpp"
 
 #include <iostream>
