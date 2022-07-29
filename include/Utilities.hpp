@@ -9,27 +9,30 @@
 //     Dotted };
 
 namespace text {
-struct USC_DLL_EXPORT DisplayCharacter {
+struct DisplayCharacter {
     std::string ascii;
     std::string unicode;
 };
 
-struct USC_DLL_EXPORT DisplayCorner {
+struct DisplayCorner {
     DisplayCharacter upper_left;
     DisplayCharacter upper_right;
     DisplayCharacter lower_left;
     DisplayCharacter lower_right;
 };
 
-struct USC_DLL_EXPORT DisplayBorder {
+struct DisplayBorder {
     DisplayCharacter horizontal;
     DisplayCharacter vertical;
 };
 
-enum USC_DLL_EXPORT Alignment {
+enum HorizontalAlignment {
     Center,
     Left,
-    Right,
+    Right
+};
+
+enum VerticalAlignment {
     Top,
     Bottom,
     Middle

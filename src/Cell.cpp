@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-void Cell::Realign(text::Alignment alignment) {
+void Cell::Realign(text::HorizontalAlignment alignment) {
     u8 total_padding = m_width - m_content.size();
     u8 current_padding = m_padding_left + m_padding_right;
     
@@ -17,8 +17,6 @@ void Cell::Realign(text::Alignment alignment) {
 
     switch (m_alignment) {
         case text::Center:
-        // even though this is vertical alignment, we also need to be centered...
-        case text::Middle:
             if (total_padding % 2 == 0) {
                 m_padding_left = total_padding / 2;
                 m_padding_right = total_padding / 2;
@@ -35,10 +33,6 @@ void Cell::Realign(text::Alignment alignment) {
         case text::Right:
             m_padding_left = total_padding - 1;
             m_padding_right = 1;
-            break;
-        // We don't do anything for other vertical alignments
-        case text::Top:
-        case text::Bottom:
             break;
     }
 }

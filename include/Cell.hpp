@@ -16,18 +16,18 @@ public:
         m_padding_right = 1;
     }
 
-    Cell(const std::string& content, u8 width, text::Alignment alignment) : m_content(content), m_alignment(alignment) {
+    Cell(const std::string& content, u8 width, text::HorizontalAlignment alignment) : m_content(content), m_alignment(alignment) {
         m_width = width;
         Realign(alignment);
     }
 
-    void Realign(text::Alignment alignment);
+    void Realign(text::HorizontalAlignment alignment);
     void AdjustWidth(u8 width);
     void Display();
 private:
     // TODO: only accept trimmed content.
     std::string m_content;
-    text::Alignment m_alignment = text::Center;
+    text::HorizontalAlignment m_alignment = text::Center;
     u8 m_width;
     u8 m_padding_left, m_padding_right;
 };
