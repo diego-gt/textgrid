@@ -11,7 +11,8 @@ public_headers = include_directories('include')
 
 sources = files([
     'src/TextCell.cpp',
-    'src/TextGrid.cpp'
+    'src/TextGrid.cpp',
+    'src/Cell.cpp'
 ])
 
 libtextgrid = library(
@@ -28,7 +29,7 @@ libtextgrid_dep = declare_dependency(
 
 demo = executable(
     'demo',
-    'src/main.cpp',
+    'src/demo.cpp',
     include_directories : public_headers,
     link_with : libtextgrid
 )

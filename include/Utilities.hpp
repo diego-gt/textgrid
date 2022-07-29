@@ -29,7 +29,10 @@ struct USC_DLL_EXPORT DisplayBorder {
 enum USC_DLL_EXPORT Alignment {
     Center,
     Left,
-    Right
+    Right,
+    Top,
+    Bottom,
+    Middle
 };
 
 const DisplayCorner corners {
