@@ -12,6 +12,7 @@ public_headers = include_directories('include')
 sources = files([
     'src/TextCell.cpp',
     'src/TextGrid.cpp',
+    'src/Utilities.cpp',
     'src/Cell.cpp'
 ])
 

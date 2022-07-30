@@ -1,30 +1,13 @@
 #pragma once
 
 #include "Visibility.hpp"
+#include "Types.hpp"
+
 #include <string>
 
-// TODO: support text styles
-// enum USC_DLL_EXPORT CharacterVariant { Regular,
-//     Bold,
-//     Dotted };
-
 namespace text {
-struct DisplayCharacter {
-    std::string ascii;
-    std::string unicode;
-};
 
-struct DisplayCorner {
-    DisplayCharacter upper_left;
-    DisplayCharacter upper_right;
-    DisplayCharacter lower_left;
-    DisplayCharacter lower_right;
-};
-
-struct DisplayBorder {
-    DisplayCharacter horizontal;
-    DisplayCharacter vertical;
-};
+std::string RepeatString(u8 count, const std::string& str);
 
 enum HorizontalAlignment {
     Center,
@@ -38,15 +21,132 @@ enum VerticalAlignment {
     Middle
 };
 
-const DisplayCorner corners {
-    .upper_left { .ascii = "+", .unicode = "┌" },
-    .upper_right { .ascii = "+", .unicode = "┐" },
-    .lower_left { .ascii = "+", .unicode = "└" },
-    .lower_right { .ascii = "+", .unicode = "┘" }
+enum CharacterMode {
+    Unicode,
+    Ascii
 };
 
-const DisplayBorder borders {
-    .horizontal { .ascii = "-", .unicode = "─" },
-    .vertical { .ascii = "|", .unicode = "│" }
+class Border {
+public:
+    Border(CharacterMode mode) : m_mode(mode) {}
+    ~Border() = default;
+
+    std::string Horizontal() {
+        switch(m_mode) {
+            case Unicode:
+                return "─";
+            case Ascii:
+                return "-";
+        }
+    }
+
+    std::string Vertical() {
+        switch(m_mode) {
+            case Unicode:
+                return "│";
+            case Ascii:
+                return "|";
+        }
+    }
+private:
+    CharacterMode m_mode = text::Unicode;
 };
+
+class Corner {
+public:
+    Corner(CharacterMode mode) : m_mode(mode) {}
+    ~Corner() = default;
+
+    std::string UpperLeft() {
+        switch(m_mode) {
+            case Unicode:
+                return "┌";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string UpperRight() {
+        switch(m_mode) {
+            case Unicode:
+                return "┐";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string LowerLeft() {
+        switch(m_mode) {
+            case Unicode:
+                return "└";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string LowerRight() {
+        switch(m_mode) {
+            case Unicode:
+                return "┘";
+            case Ascii:
+                return "+";
+        }
+    }
+private:
+    CharacterMode m_mode;
+};
+
+class ConnectedCorner {
+public:
+    ConnectedCorner(CharacterMode mode) : m_mode(mode) {}
+    ~ConnectedCorner() = default;
+
+    std::string UpperLeftVertical() {
+        switch(m_mode) {
+            case Unicode:
+                return "├";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string UpperRightVertical() {
+        switch(m_mode) {
+            case Unicode:
+                return "┤";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string UpperHorizontal() {
+        switch(m_mode) {
+            case Unicode:
+                return "┬";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string LowerHorizontal() {
+        switch(m_mode) {
+            case Unicode:
+                return "┴";
+            case Ascii:
+                return "+";
+        }
+    }
+
+    std::string Cross() {
+        switch(m_mode) {
+            case Unicode:
+                return "┼";
+            case Ascii:
+                return "+";
+        }
+    }
+private:
+    CharacterMode m_mode;
+};
+
 }
