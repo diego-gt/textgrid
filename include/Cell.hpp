@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Utilities.hpp"
 #include "Types.hpp"
+#include "Utilities.hpp"
 
 #include <string>
 
@@ -11,13 +11,18 @@ public:
     ~Cell() = default;
 
     // Create a centered, 1 space padded, cell with the given content
-    Cell(const std::string& content) : m_content(content) {
+    Cell(const std::string& content)
+        : m_content(content)
+    {
         m_width = m_content.size() + 2;
         m_padding_left = 1;
         m_padding_right = 1;
     }
 
-    Cell(const std::string& content, u8 width, text::HorizontalAlignment alignment) : m_content(content), m_alignment(alignment) {
+    Cell(const std::string& content, u8 width, text::HorizontalAlignment alignment)
+        : m_content(content)
+        , m_alignment(alignment)
+    {
         m_width = width;
         // apply alignment
         Realign(alignment);
@@ -30,6 +35,7 @@ public:
 
     // properties
     u8 width() { return m_width; }
+
 private:
     // TODO: only accept trimmed content.
     std::string m_content;

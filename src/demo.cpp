@@ -3,12 +3,12 @@
 
 #include <iostream>
 
-int main() {
+int main()
+{
     Cell d("hello", 10, text::Left);
     text::Corner crn(text::Unicode);
     text::ConnectedCorner conncrn(text::Unicode);
     text::Border brd(text::Unicode);
-
 
     // top border
     std::cout << crn.UpperLeft();

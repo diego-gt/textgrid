@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Visibility.hpp"
 #include "Types.hpp"
+#include "Visibility.hpp"
 
 #include <string>
 
@@ -28,123 +28,146 @@ enum CharacterMode {
 
 class Border {
 public:
-    Border(CharacterMode mode) : m_mode(mode) {}
+    Border(CharacterMode mode)
+        : m_mode(mode)
+    {
+    }
     ~Border() = default;
 
-    std::string Horizontal() {
-        switch(m_mode) {
-            case Unicode:
-                return "─";
-            case Ascii:
-                return "-";
+    std::string Horizontal()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "─";
+        case Ascii:
+            return "-";
         }
     }
 
-    std::string Vertical() {
-        switch(m_mode) {
-            case Unicode:
-                return "│";
-            case Ascii:
-                return "|";
+    std::string Vertical()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "│";
+        case Ascii:
+            return "|";
         }
     }
+
 private:
     CharacterMode m_mode = text::Unicode;
 };
 
 class Corner {
 public:
-    Corner(CharacterMode mode) : m_mode(mode) {}
+    Corner(CharacterMode mode)
+        : m_mode(mode)
+    {
+    }
     ~Corner() = default;
 
-    std::string UpperLeft() {
-        switch(m_mode) {
-            case Unicode:
-                return "┌";
-            case Ascii:
-                return "+";
+    std::string UpperLeft()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┌";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string UpperRight() {
-        switch(m_mode) {
-            case Unicode:
-                return "┐";
-            case Ascii:
-                return "+";
+    std::string UpperRight()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┐";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string LowerLeft() {
-        switch(m_mode) {
-            case Unicode:
-                return "└";
-            case Ascii:
-                return "+";
+    std::string LowerLeft()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "└";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string LowerRight() {
-        switch(m_mode) {
-            case Unicode:
-                return "┘";
-            case Ascii:
-                return "+";
+    std::string LowerRight()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┘";
+        case Ascii:
+            return "+";
         }
     }
+
 private:
     CharacterMode m_mode;
 };
 
 class ConnectedCorner {
 public:
-    ConnectedCorner(CharacterMode mode) : m_mode(mode) {}
+    ConnectedCorner(CharacterMode mode)
+        : m_mode(mode)
+    {
+    }
     ~ConnectedCorner() = default;
 
-    std::string UpperLeftVertical() {
-        switch(m_mode) {
-            case Unicode:
-                return "├";
-            case Ascii:
-                return "+";
+    std::string UpperLeftVertical()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "├";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string UpperRightVertical() {
-        switch(m_mode) {
-            case Unicode:
-                return "┤";
-            case Ascii:
-                return "+";
+    std::string UpperRightVertical()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┤";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string UpperHorizontal() {
-        switch(m_mode) {
-            case Unicode:
-                return "┬";
-            case Ascii:
-                return "+";
+    std::string UpperHorizontal()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┬";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string LowerHorizontal() {
-        switch(m_mode) {
-            case Unicode:
-                return "┴";
-            case Ascii:
-                return "+";
+    std::string LowerHorizontal()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┴";
+        case Ascii:
+            return "+";
         }
     }
 
-    std::string Cross() {
-        switch(m_mode) {
-            case Unicode:
-                return "┼";
-            case Ascii:
-                return "+";
+    std::string Cross()
+    {
+        switch (m_mode) {
+        case Unicode:
+            return "┼";
+        case Ascii:
+            return "+";
         }
     }
+
 private:
     CharacterMode m_mode;
 };
