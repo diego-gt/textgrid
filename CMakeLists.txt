@@ -8,15 +8,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_library(textgrid
+    include/Utilities.hpp
     include/Visibility.hpp
     include/Types.hpp
-    include/TextCell.hpp
-    include/TextGrid.hpp
-    src/TextCell.cpp
-    src/TextGrid.cpp)
+    include/Cell.hpp
+    include/Grid.hpp
+    src/Utilities.cpp
+    src/Cell.cpp
+    )
 
 add_executable(demo
-    src/main.cpp)
+    src/demo.cpp)
 
 target_include_directories(textgrid PUBLIC include)
 

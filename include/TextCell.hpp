@@ -12,6 +12,7 @@ enum class CornerDraw { Left,
     Right,
     None,
     Both };
+
 enum class NeighborPosition { Left,
     Right,
     Up,
